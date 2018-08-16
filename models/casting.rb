@@ -42,41 +42,41 @@ class Casting
 
   def update()
     sql = "UPDATE castings
-          SET(
-            star_id, movie_id, fee
-          ) = (
-            $1, $2, $3
-          )
-          WHERE id = $4"
-    values=[@star_id, @movie_id, @fee, @id]
-    SqlRunner.run(sql, values)
-  end
+    SET(
+      star_id, movie_id, fee
+      ) = (
+        $1, $2, $3
+      )
+      WHERE id = $4"
+      values=[@star_id, @movie_id, @fee, @id]
+      SqlRunner.run(sql, values)
+    end
 
-  def delete()
-    sql = "DELETE FROM castings WHERE id = $1"
-    values=[@id]
-    SqlRunner.run(sql, values)
-  end
+    def delete()
+      sql = "DELETE FROM castings WHERE id = $1"
+      values=[@id]
+      SqlRunner.run(sql, values)
+    end
 
-  def self.delete_all()
-    sql = "DELETE FROM castings"
-    SqlRunner.run(sql)
-  end
+    def self.delete_all()
+      sql = "DELETE FROM castings"
+      SqlRunner.run(sql)
+    end
 
-  def movie()
-    sql = "SELECT * FROM movies
-          WHERE id = $1"
-    values = [@movie_id]
-    movie = SqlRunner.run(sql, values).first
-    return Movie.new(movie)
-  end
+    def movie()
+      sql = "SELECT * FROM movies
+      WHERE id = $1"
+      values = [@movie_id]
+      movie = SqlRunner.run(sql, values).first
+      return Movie.new(movie)
+    end
 
-  def star()
-    sql = "SELECT * FROM stars
-          WHERE id = $1"
-    values = [@star_id]
-    star = SqlRunner.run(sql, values).first
-    return Star.new(star)
-  end
+    def star()
+      sql = "SELECT * FROM stars
+      WHERE id = $1"
+      values = [@star_id]
+      star = SqlRunner.run(sql, values).first
+      return Star.new(star)
+    end
 
-end
+  end
